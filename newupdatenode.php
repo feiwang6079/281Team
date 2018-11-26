@@ -79,11 +79,12 @@ MAIN CONTENT
 include 'config.php';
 
 $building = $_GET['building'];
-$count_sql = "select * from building where building_id = $building";
-$result = mysqli_query($conn, $count_sql);
+$cluster_id = $_GET['clusterid'];
+$floor_sql = "select location from floor where floor_cluster_id = $cluster_id";
+$result = mysqli_query($conn, $floor_sql);
 $row = mysqli_fetch_assoc($result);
-echo 'Building Name: ';
-echo $row['building_name'] ;
+echo 'Cluster location: ';
+echo $row['location'] ;
 
 
 ?>
@@ -93,40 +94,41 @@ echo $row['building_name'] ;
         <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> Insert floor cluster</h4>
+            <h4><i class="fa fa-angle-right"></i> Insert room node</h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="#">           
                   <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-2">Cluster id </label>
+                    <label for="cname" class="control-label col-lg-2">Node id </label>
                     <div class="col-lg-10">
                     
                      <?php    
-                         $id = (int) $_GET['clusterid'];
                          
-                         $sql = "select * from floor where floor_cluster_id = $id";
+                         $id = (int) $_GET['nodeid'];
+                         
+                         $sql = "select * from node where node_id = $id";
                          $result = mysqli_query($conn, $sql);
                          $row = mysqli_fetch_assoc($result);
                          
-                         $clusterid = $row['floor_cluster_id'];
+                         $nodeid = $row['node_id'];
                          $location = $row['location'];
                          $time = $row['time'];
                          
                          if(isset($_POST["location"]) && isset($_POST["id"]))
                          {
-                             $clusterid = $_POST["id"];
+                             $nodeid = $_POST["id"];
                              $location = $_POST["location"];
                          }
                          
                      
-                        echo "<input class=\" form-control\" name=\"id\"  type=\"text\" value = \"$clusterid\" required />";
+                        echo "<input class=\" form-control\" name=\"id\"  type=\"text\" value = \"$nodeid\" required />";
                      ?>
                    
                    
                     </div>
                   </div>
                   <div class="form-group ">
-                    <label for="cemail" class="control-label col-lg-2">Cluster location </label>
+                    <label for="cemail" class="control-label col-lg-2">Node location </label>
                     <div class="col-lg-10">
                     <?php
                     echo "<input class=\"form-control \" name=\"location\" value =\"$location\" required />";
@@ -138,8 +140,8 @@ echo $row['building_name'] ;
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme" type="submit">Save</button>
                          <?php    
-                          echo "<button class=\"btn btn-theme04\" type=\"button\" onclick=\"window.location.href='newindex.php?building=$building'\">Cancel</button>";
-                          ?>
+                          echo "<button class=\"btn btn-theme04\" type=\"button\" onclick=\"window.location.href='newindex.php?building=$building&clusterid=$cluster_id'\">Cancel</button>";
+                         ?>
                     </div>
                   </div>
                   
@@ -148,25 +150,25 @@ echo $row['building_name'] ;
     if(isset($_POST["location"]) && isset($_POST["id"]))
     {
         
-        $clusterid = $_POST["id"];
+        $nodeid = $_POST["id"];
         $location = $_POST["location"];
         
-        if(strcmp($clusterid, $row['floor_cluster_id']) == 0 && strcmp($location, $row["location"])==0 && strcmp($time, $row['time'])==0)
+        if(strcmp($nodeid, $row['node_id']) == 0 && strcmp($location, $row["location"])==0 && strcmp($time, $row['time'])==0)
         {
             echo "<div>please enter different data</div>";
         }
         else 
         {
-            
-            $sql = "update floor set floor_cluster_id = $clusterid, location = '$location' where floor_cluster_id = $id";
+            $sql = "update node set node_id = $nodeid, location = '$location' where node_id = $id";
             
             if (mysqli_query($conn, $sql)) {
                 echo "<div> insert success</div> ";
             }else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
-        }
 
+        }
+       
     }
                   
     ?>

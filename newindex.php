@@ -184,7 +184,7 @@ else if(isset($_GET['building']))
             echo '<td>' . $row['sensor_type'] . '</td>';
             echo '<td>' . $location . '</td>';
             echo '<td>' . $row['time'] . '</td>';
-            echo "<td><a href=\"update.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&sensorid=" . $row['sensor_id'] . '">update</a></td>';
+            echo "<td><a href=\"newupdatesensor.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&sensorid=" . $row['sensor_id'] . '">update</a></td>';
             echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&sensorid=" . $row['sensor_id'] . '">delete</a></td>';
             echo '</tr>';
         }
@@ -248,7 +248,7 @@ else if(isset($_GET['building']))
             echo '<td>Node</td>';
             echo '<td>' . $room['location'] . '</td>';
             echo '<td>' . $room['time'] . '</td>';
-            echo "<td><a href=\"update.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">update</a></td>';
+            echo "<td><a href=\"newupdatenode.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">update</a></td>';
             echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">delete</a></td>';
             echo '</tr>';
         }
