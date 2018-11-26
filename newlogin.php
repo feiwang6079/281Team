@@ -36,15 +36,27 @@
   <div id="login-page">
     <div class="container">
       <form class="form-login" action="loginResult.php"  method="post">
-        <h2 class="form-login-heading">Infrastructure</h2>
+        <h2 class="form-login-heading">
+        
+        <?php 
+        if(isset($_GET['isfail']))
+        {
+            echo "Login Failed";
+        }
+        else 
+        {
+            echo "Infrastructure";
+        }
+        ?>
+        </h2>
         <div class="login-wrap">
           <input type="text" class="form-control" placeholder="User ID" name="fname" autofocus>
           <br>
           <input type="password" class="form-control" placeholder="Password" name="fpassword">
-          <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
+          <label class="checkbox"> 
+<!--             <input type="checkbox" value="remember-me"> Remember me -->
             <span class="pull-right">
-            <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+<!--             <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a> -->
             </span>
             </label>
           <button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
@@ -54,12 +66,12 @@
 <!--             <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button> -->
 <!--             <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button> -->
 <!--           </div> -->
-          <div class="registration">
-            Don't have an account yet?<br/>
-            <a class="" href="#">
-              Create an account
-              </a>
-          </div>
+<!--           <div class="registration"> -->
+<!--             Don't have an account yet?<br/> -->
+<!--             <a class="" href="#"> -->
+<!--               Create an account -->
+<!--               </a> -->
+<!--           </div> -->
         </div>
         <!-- Modal -->
         <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">

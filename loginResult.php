@@ -42,7 +42,8 @@ if (mysqli_num_rows($result) > 0)
     }
     else 
     {
-        wrongPassaword();
+        header("Location: newlogin.php?isfail=1");
+//         wrongPassaword();
     }
 }
 else 
