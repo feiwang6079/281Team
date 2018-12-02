@@ -77,7 +77,75 @@
                 Google Map with Loaction List
               </header>
               <div class="panel-body">
-                <div id="gmap-list"></div>
+              
+              <?php 
+                   include 'config.php';
+              
+                   $sql = "select * from building";
+                   $result = mysqli_query($conn, $sql);
+                   $array = array();
+                   while ($row = mysqli_fetch_assoc($result))
+                   {
+                        $array[] = $row;
+                    }
+              ?>
+              
+              <script>
+
+              var map;
+              var jsonData;
+              function initialize()
+              {
+                  
+                var mapProp = {
+                  center: new google.maps.LatLng(37.336451, -121.880437),
+                  zoom:8,
+                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                
+                map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+				jsonData = <?php echo json_encode($array);?> 
+                
+                for (var i = 0; i < jsonData.length; i++)
+                {
+                	var marker = new google.maps.Marker({
+                 	  position:new google.maps.LatLng(jsonData[i].latitude, jsonData[i].longitude),
+                	});
+                 	 marker.setMap(map);
+
+                 	showInfoMessage(marker, i);
+//                		google.maps.event.addListener(marker, 'click', function() {
+//                			infowindow.open(map,marker);
+//                		});
+                 } 
+              }
+
+              function showInfoMessage(marker, i)
+              {
+                	var infowindow = new google.maps.InfoWindow({
+       	  				content:jsonData[i].building_name
+       				});
+       				
+            	  google.maps.event.addListener(marker, 'click', function(event) {
+         			infowindow.open(map,marker);
+            	  });
+              }
+
+              function loadScript()
+              {
+                var script = document.createElement("script");
+                script.type = "text/javascript";
+                script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAtChepFLHQSDIJy0DzP-24xf3vq5U3Ecg&sensor=false&callback=initialize";
+                document.body.appendChild(script);
+              }
+
+              window.onload = loadScript;
+              </script>
+              
+				<div id="googleMap" style="width:500px;height:380px;"></div>
+              
+              
+<!--                 <div id="gmap-list"></div> -->
                 <div> <br> Engineer Building
 <input type="button" value="submit" onclick="window.location.href='newindex.php?building=1'"></div>
               </div>
