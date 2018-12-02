@@ -99,12 +99,15 @@
                   
                 var mapProp = {
                   center: new google.maps.LatLng(37.336451, -121.880437),
-                  zoom:8,
+                  zoom:15,
                   mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 
                 map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 				jsonData = <?php echo json_encode($array);?> 
+
+            	document.getElementById("a1").innerHTML = "Building: "+jsonData[0].building_name + "<br> Address: " + jsonData[0].building_address;
+            	document.getElementById("a1").href = "newindex.php?building="+ jsonData[0].building_id;
                 
                 for (var i = 0; i < jsonData.length; i++)
                 {
@@ -114,9 +117,7 @@
                  	 marker.setMap(map);
 
                  	showInfoMessage(marker, i);
-//                		google.maps.event.addListener(marker, 'click', function() {
-//                			infowindow.open(map,marker);
-//                		});
+
                  } 
               }
 
@@ -125,9 +126,13 @@
                 	var infowindow = new google.maps.InfoWindow({
        	  				content:jsonData[i].building_name
        				});
+
        				
             	  google.maps.event.addListener(marker, 'click', function(event) {
          			infowindow.open(map,marker);
+
+                	document.getElementById("a1").innerHTML = "Building: "+jsonData[i].building_name + "<br> Address: " + jsonData[i].building_address;
+                	document.getElementById("a1").href = "newindex.php?building="+ jsonData[i].building_id;
             	  });
               }
 
@@ -142,12 +147,12 @@
               window.onload = loadScript;
               </script>
               
-				<div id="googleMap" style="width:500px;height:380px;"></div>
+				<div id="googleMap" style="width:800px;height:400px;"></div>
               
               
 <!--                 <div id="gmap-list"></div> -->
-                <div> <br> Engineer Building
-<input type="button" value="submit" onclick="window.location.href='newindex.php?building=1'"></div>
+                <div> <br>  <a id="a1" href = "#">Engineer Building</a><br>
+<input type="button" value="Add Building" onclick="window.location.href='newaddbuilding.php'"></div>
               </div>
             </section>
           </div>

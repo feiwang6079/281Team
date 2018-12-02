@@ -71,89 +71,65 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> 
-        
-        
-                <?php 
-include 'config.php';
-
-$building = $_GET['building'];
-$node_id = $_GET["nodeid"];
-$cluster_id = $_GET['clusterid'];
-
-$floor_sql = "select location from node where node_id = $node_id";
-$result = mysqli_query($conn, $floor_sql);
-$row = mysqli_fetch_assoc($result);
-echo 'Node location: ';
-echo $row['location'];
-
-
-
-?>
-        
-        </h3>
+        <h3><i class="fa fa-angle-right"></i>Add Building</h3>
 
         <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> Insert sensor</h4>
+            <h4><i class="fa fa-angle-right"></i> Insert Building Information</h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="#">
                   <div class="form-group ">
-                    <label for="cname" class="control-label col-lg-2">sensor id </label>
+                    <label for="cname" class="control-label col-lg-2">building name </label>
                     <div class="col-lg-10">
-                      <input class=" form-control" id="" name="id" minlength="" type="text" required />
+                      <input class=" form-control" id="" name="name" minlength="" type="text" required />
                     </div>
                   </div>
                   <div class="form-group ">
-                    <label for="cemail" class="control-label col-lg-2">sensor type </label>
+                    <label for="cemail" class="control-label col-lg-2">building address </label>
                     <div class="col-lg-10">
-                      <input class="form-control " id="" type="" name="type" required />
+                      <input class="form-control " id="" type="" name="address" required />
                     </div>
                   </div>
                   <div class="form-group ">
-                    <label for="curl" class="control-label col-lg-2">sensor status </label>
+                    <label for="curl" class="control-label col-lg-2">building latitude </label>
                     <div class="col-lg-10">
-                      <input class="form-control " id="" type="" name="status" />
+                      <input class="form-control " id="" type="" name="latitude" />
                     </div>
                   </div>
-<!--                   <div class="form-group "> -->
-<!--                     <label for="ccomment" class="control-label col-lg-2">Your Comment </label> -->
-<!--                     <div class="col-lg-10"> -->
-<!--                       <textarea class="form-control " id="ccomment" name="comment" required></textarea> -->
-<!--                     </div> -->
-<!--                   </div> -->
+                   <div class="form-group ">
+                    <label for="curl" class="control-label col-lg-2">building longitude </label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="" type="" name="longitude" />
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme" type="submit">Save</button>
-                      
-                            <?php                              
-                            echo "<button class=\"btn btn-theme04\" type=\"button\" onclick=\"window.location.href='newindex.php?building=$building&clusterid=$cluster_id&nodeid=$node_id'\">Cancel</button>";
-                            ?>
-                      
+                      <button class="btn btn-theme04" type="button" onclick="window.location.href='newmapselectbuilding.php'">Cancel</button>
                     </div>
                   </div>
                   
-      <?php             
-      if(isset($_POST["type"])&& isset($_POST["id"]) && isset($_POST["status"]))
+      <?php    
+      
+      include 'config.php';
+      
+      
+      if(isset($_POST["name"])&& isset($_POST["address"]) && isset($_POST["latitude"]) && isset($_POST["longitude"]))
       {
-          $type=$_POST["type"];
-          $id=$_POST["id"];
-          $status = $_POST["status"];
+          $name=$_POST["name"];
+          $address=$_POST["address"];
+          $latitude = $_POST["latitude"];
+          $longitude = $_POST["longitude"];
           
-          $sql = "INSERT INTO node_sensor (node_id, sensor_id) VALUES ($node_id, $id)";
+          $sql = "INSERT INTO building (building_name, building_address, latitude, longitude) VALUES ('$name', '$address', '$latitude', '$longitude')";
           
           if (mysqli_query($conn, $sql)) {
-              //             echo "insert success";
-              $sql = "INSERT INTO sensor (sensor_id, sensor_type, sensor_status) VALUES ($id, '$type', $status)";
-              
-              if (mysqli_query($conn, $sql)) {
+              //             echo "insert success";              
                   echo "<div> insert success</div> ";
-              } else {
-                  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-              }
-              
+
           } else {
               echo "Error: " . $sql . "<br>" . mysqli_error($conn);
           }
