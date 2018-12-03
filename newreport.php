@@ -58,18 +58,15 @@
           <?php 
           include 'config.php';
           $building = $_GET['building'];
-          echo "<a class=\"active\" href=\"newindex.php?building=$building\">"
+          echo "<a  href=\"newindex.php?building=$building\">"
           ?>
               <i class="fa fa-th"></i>
               <span>Infrastructure </span>
               </a>
           </li>
         
-        
          <li>
-         <?php  echo "<a href=\"newreport.php?building=$building\">" ?>
-<!--             <a href="newreport.php"> -->
-            
+          <?php  echo "<a class=\"active\" href=\"newreport.php?building=$building\">" ?>
               <i class="fa fa-bar-chart-o"></i>
               <span>Status Report </span>
               </a>
