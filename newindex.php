@@ -144,12 +144,12 @@ else if(isset($_GET['building']))
         $cluster_id = $_GET['clusterid'];
         $node_id = $_GET['nodeid'];
         
-        $floor_sql = "select location from node where node_id = $node_id";
-        $result = mysqli_query($conn, $floor_sql);
-        $row = mysqli_fetch_assoc($result);
+//         $floor_sql = "select location from node where node_id = $node_id";
+//         $result = mysqli_query($conn, $floor_sql);
+//         $row = mysqli_fetch_assoc($result);
         $location = $row['location'];
         
-        $count_sql = 'select count(sensor_id) as c from node_sensor';
+        $count_sql = "select count(sensor_id) as c from node_sensor where node_id = $node_id";
         $result = mysqli_query($conn, $count_sql);
         $data = mysqli_fetch_assoc($result);
         $count = $data['c'];
@@ -167,12 +167,24 @@ else if(isset($_GET['building']))
         }
         
         $offset = ($page - 1) * $num;
-        $sql = "select sensor_id, sensor_type, time from sensor order by sensor_id desc limit $offset , $num";
+        $sql = "select sensor_id from node_sensor where node_id = $node_id order by sensor_id desc limit $offset , $num";
         $result = mysqli_query($conn, $sql);
+        
+        if($result == false)
+        {
+
+            echo "<tr><div align=\"center\"><input type=\"button\" value=\" add new sensor \" 
+                                                   onclick=\"window.location.href='newaddsensor.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id'\">
+                                                    </div></td></tr>";
+            
+        }
+        else
+        {
         
         echo '<tr>';
         echo '<td>' . 'Device id' . '</td>';
         echo '<td>' . 'Device type' . '</td>';
+        echo '<td>' . 'Status' . '</td>';
         echo '<td>' . 'location' . '</td>';
         echo '<td>' . 'Install time' . '</td>';
         echo '<td>' . 'update' . '</td>';
@@ -181,17 +193,35 @@ else if(isset($_GET['building']))
         
         while ($row = mysqli_fetch_assoc($result)) {
             
+            $sensor_id = $row['sensor_id'];
+            $nodeSql = "select * from sensor where sensor_id = $sensor_id";
+            $resultSql = mysqli_query($conn, $nodeSql);
+            $room = mysqli_fetch_assoc($resultSql);
+            
             echo '<tr>';
-            echo '<td>' . $row['sensor_id'] . '</td>';
-            echo '<td>' . $row['sensor_type'] . '</td>';
+            echo '<td>' . $room['sensor_id'] . '</td>';
+            echo '<td>' . $room['sensor_type'] . '</td>';
+            echo '<td>' . $room['sensor_status'] . '</td>';
             echo '<td>' . $location . '</td>';
-            echo '<td>' . $row['time'] . '</td>';
+            echo '<td>' . $room['time'] . '</td>';
             echo "<td><a href=\"newupdatesensor.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&sensorid=" . $row['sensor_id'] . '">update</a></td>';
             echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&sensorid=" . $row['sensor_id'] . '">delete</a></td>';
             echo '</tr>';
+            }
+         echo "<tr><td colspan=\"7\">
+                                    <div align=\"right\">
+                                    <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=1\">Main
+                                    </a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . ($page - 1) . "\">Previous
+                                    </a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . ($page + 1) . "\">Next
+                                    </a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . $total . "\">Last
+                                    </a>  Current " . $page . 'Total' . $total."
+                                    </div>
+                                    <div align=\"center\">
+                                        <input type=\"button\" value=\" add new sensor \" 
+                                        onclick=\"window.location.href='newaddsensor.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id'\"> 
+                                    </div></td></tr>";
+        
         }
-        echo "<tr><td colspan=\"6\"><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=1\">Main</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . ($page - 1) . "\">Previous</a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . ($page + 1) . "\">Next</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id&page=" . $total . "\">Last</a>  Current " . $page . 'Total' . $total;
-        echo "<input type=\"button\" value=\" add new sensor \" onclick=\"window.location.href='newaddsensor.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id'\"> </td></tr>";
     }
     
     //展示node列表
@@ -241,7 +271,8 @@ else if(isset($_GET['building']))
             echo '<tr>';
             echo '<td>' . 'Device id' . '</td>';
             echo '<td>' . 'Device type' . '</td>';
-            echo '<td>' . 'location' . '</td>';
+            echo '<td>' . 'Status' . '</td>';
+            echo '<td>' . 'Location' . '</td>';
             echo '<td>' . 'Install time' . '</td>';
             echo '<td>' . 'update' . '</td>';
             echo '<td>' . 'delete' . '</td>';
@@ -257,14 +288,25 @@ else if(isset($_GET['building']))
                 echo '<tr>';
                 echo "<td><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id\">" . $node_id . '</td>';
                 echo '<td>Node</td>';
+                echo '<td>' . $room['status'] . '</td>';
                 echo '<td>' . $room['location'] . '</td>';
                 echo '<td>' . $room['time'] . '</td>';
                 echo "<td><a href=\"newupdatenode.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">update</a></td>';
                 echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">delete</a></td>';
                 echo '</tr>';
             }
-            echo "<tr><td colspan=\"6\"><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=1\">Main</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page - 1) . "\">Previous</a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page + 1) . "\">Next</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . $total . "\">Last</a>  Current " . $page . 'Total' . $total;
-            echo "<input type=\"button\" value=\" add new node \" onclick=\"window.location.href='newaddnode.php?building=$building_id&clusterid=$cluster_id'\"> </td></tr>";
+            echo "<tr><td colspan=\"7\">
+                                        <div align=\"right\" >
+                                        <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=1\">Main
+                                        </a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page - 1) . "\">Previous
+                                        </a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page + 1) . "\">Next
+                                        </a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . $total . "\">Last
+                                        </a>  Current " . $page . 'Total' . $total."
+                                        </div>
+                                        <div align=\"center\">
+                                            <input type=\"button\" value=\" add new node \" 
+                                            onclick=\"window.location.href='newaddnode.php?building=$building_id&clusterid=$cluster_id'\"> 
+                                        </div> </td></tr>";
         }
     }
     

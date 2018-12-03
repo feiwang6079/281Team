@@ -172,10 +172,10 @@ echo $row['location'] ;
         }
         else 
         {
-            $sql = "update sensor set sensor_type = '$type', sensor_status = $status where sensor_id = $id";
+            $sql = "update sensor set sensor_type = '$type', sensor_status = '$status' where sensor_id = $id";
             
             if (mysqli_query($conn, $sql)) {
-                echo "<div> insert success</div> ";
+                echo "<div> Update success</div> ";
             }else {
                 echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }

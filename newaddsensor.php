@@ -146,7 +146,7 @@ echo $row['location'];
           
           if (mysqli_query($conn, $sql)) {
               //             echo "insert success";
-              $sql = "INSERT INTO sensor (sensor_id, sensor_type, sensor_status) VALUES ($id, '$type', $status)";
+              $sql = "INSERT INTO sensor (sensor_id, sensor_type, sensor_status) VALUES ($id, '$type', '$status')";
               
               if (mysqli_query($conn, $sql)) {
                   echo "<div> insert success</div> ";

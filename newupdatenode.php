@@ -56,9 +56,18 @@ MAIN SIDEBAR MENU
 <!-- sidebar menu start-->
 <ul class="sidebar-menu" id="nav-accordion">
 <li>
-<a class="active" href="newindex.php?building=1">
+
+         <?php 
+          
+          include 'config.php';
+          
+          $building = $_GET['building'];
+          
+            echo "<a class=\"active\" href=\"newindex.php?building=$building\">"
+          
+          ?>
 <i class="fa fa-th"></i>
-<span>Sensors </span>
+<span>Infrasturcture </span>
 </a>
 </li>
 </ul>
@@ -76,9 +85,7 @@ MAIN CONTENT
 
 
 <?php
-include 'config.php';
 
-$building = $_GET['building'];
 $cluster_id = $_GET['clusterid'];
 $floor_sql = "select location from floor where floor_cluster_id = $cluster_id";
 $result = mysqli_query($conn, $floor_sql);
@@ -94,7 +101,7 @@ echo $row['location'] ;
         <!-- FORM VALIDATION -->
         <div class="row mt">
           <div class="col-lg-12">
-            <h4><i class="fa fa-angle-right"></i> Insert room node</h4>
+            <h4><i class="fa fa-angle-right"></i> Update room node</h4>
             <div class="form-panel">
               <div class=" form">
                 <form class="cmxform form-horizontal style-form" id="commentForm" method="post" action="#">           
@@ -112,12 +119,15 @@ echo $row['location'] ;
                          
                          $nodeid = $row['node_id'];
                          $location = $row['location'];
+                         $status = $row['status'];
                          $time = $row['time'];
                          
-                         if(isset($_POST["location"]) && isset($_POST["id"]))
+                         if(isset($_POST["location"]) && isset($_POST["id"]) && isset($_POST["status"]))
                          {
                              $nodeid = $_POST["id"];
                              $location = $_POST["location"];
+                             $status = $_POST["status"];
+                             
                          }
                          
                      
@@ -135,6 +145,16 @@ echo $row['location'] ;
                      ?>
                     </div>
                   </div>
+                  
+                  <div class="form-group ">
+                    <label for="cemail" class="control-label col-lg-2">Node status </label>
+                    <div class="col-lg-10">
+                    <?php
+                    echo "<input class=\"form-control \" name=\"status\" value =\"$status\" required />";
+                     ?>
+                    </div>
+                  </div>
+                  
 
                   <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
@@ -147,19 +167,21 @@ echo $row['location'] ;
                   
       <?php    
       
-    if(isset($_POST["location"]) && isset($_POST["id"]))
+      if(isset($_POST["location"]) && isset($_POST["id"]) && isset($_POST["status"]))
     {
         
         $nodeid = $_POST["id"];
         $location = $_POST["location"];
+        $status = $_POST["status"];
         
-        if(strcmp($nodeid, $row['node_id']) == 0 && strcmp($location, $row["location"])==0 && strcmp($time, $row['time'])==0)
+        
+        if(strcmp($nodeid, $row['node_id']) == 0 && strcmp($location, $row["location"])==0 && strcmp($status, $row['status'])==0)
         {
             echo "<div>please enter different data</div>";
         }
         else 
         {
-            $sql = "update node set node_id = $nodeid, location = '$location' where node_id = $id";
+            $sql = "update node set node_id = $nodeid, location = '$location', status = '$status' where node_id = $id";
             
             if (mysqli_query($conn, $sql)) {
                 echo "<div> insert success</div> ";
