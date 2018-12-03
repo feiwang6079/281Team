@@ -57,6 +57,8 @@ else if(isset($_GET["nodeid"]))
 }
 else if(isset($_GET["clusterid"]))
 {
+    $building = $_GET['building'];
+    
     $id = (int) $_GET['clusterid'];
     
     $sql = "DELETE FROM floor where floor_cluster_id = $id";
@@ -65,7 +67,7 @@ else if(isset($_GET["clusterid"]))
         $sql = "DELETE FROM building_floor where floor_cluster_id = $id";
         if (mysqli_query($conn, $sql))
         {
-            header("Location: newindex.php?building=1");
+            header("Location: newindex.php?building=$building");
         }
         else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);

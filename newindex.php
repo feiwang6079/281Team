@@ -67,17 +67,11 @@
             
             
               <i class="fa fa-th"></i>
-              <span>Sensors </span>
+              <span>Infrastructure </span>
               </a>
           </li>
         </ul>
         
-         <li>
-            <a href="newchart.php">
-              <i class="fa fa-bar-chart-o"></i>
-              <span>Status report </span>
-              </a>
-          </li>
         
         <!-- sidebar menu end-->
       </div>
@@ -235,33 +229,43 @@ else if(isset($_GET['building']))
         
         $result = mysqli_query($conn, $sql);
         
-        echo '<tr>';
-        echo '<td>' . 'Device id' . '</td>';
-        echo '<td>' . 'Device type' . '</td>';
-        echo '<td>' . 'location' . '</td>';
-        echo '<td>' . 'Install time' . '</td>';
-        echo '<td>' . 'update' . '</td>';
-        echo '<td>' . 'delete' . '</td>';
-        echo '</tr>';
-        
-        while ($row = mysqli_fetch_assoc($result)) {
+        if($result == false)
+        {
+            echo "<tr><div align=\"center\"><input type=\"button\" value=\" add new node \" 
+                                                   onclick=\"window.location.href='newaddnode.php?building=$building_id&clusterid=$cluster_id'\"> 
+                                                    </div></td></tr>";
             
-            $node_id = $row['node_id'];
-            $nodeSql = "select * from node where node_id = $node_id";
-            $resultSql = mysqli_query($conn, $nodeSql);
-            $room = mysqli_fetch_assoc($resultSql);
-            
-            echo '<tr>';
-            echo "<td><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id\">" . $node_id . '</td>';
-            echo '<td>Node</td>';
-            echo '<td>' . $room['location'] . '</td>';
-            echo '<td>' . $room['time'] . '</td>';
-            echo "<td><a href=\"newupdatenode.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">update</a></td>';
-            echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">delete</a></td>';
-            echo '</tr>';
         }
-        echo "<tr><td colspan=\"6\"><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=1\">Main</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page - 1) . "\">Previous</a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page + 1) . "\">Next</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . $total . "\">Last</a>  Current " . $page . 'Total' . $total;
-        echo "<input type=\"button\" value=\" add new node \" onclick=\"window.location.href='newaddnode.php?building=$building_id&clusterid=$cluster_id'\"> </td></tr>";
+        else 
+        {
+            echo '<tr>';
+            echo '<td>' . 'Device id' . '</td>';
+            echo '<td>' . 'Device type' . '</td>';
+            echo '<td>' . 'location' . '</td>';
+            echo '<td>' . 'Install time' . '</td>';
+            echo '<td>' . 'update' . '</td>';
+            echo '<td>' . 'delete' . '</td>';
+            echo '</tr>';
+            
+            while ($row = mysqli_fetch_assoc($result)) {
+                
+                $node_id = $row['node_id'];
+                $nodeSql = "select * from node where node_id = $node_id";
+                $resultSql = mysqli_query($conn, $nodeSql);
+                $room = mysqli_fetch_assoc($resultSql);
+                
+                echo '<tr>';
+                echo "<td><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&nodeid=$node_id\">" . $node_id . '</td>';
+                echo '<td>Node</td>';
+                echo '<td>' . $room['location'] . '</td>';
+                echo '<td>' . $room['time'] . '</td>';
+                echo "<td><a href=\"newupdatenode.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">update</a></td>';
+                echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id&nodeid=" . $node_id . '">delete</a></td>';
+                echo '</tr>';
+            }
+            echo "<tr><td colspan=\"6\"><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=1\">Main</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page - 1) . "\">Previous</a>   <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . ($page + 1) . "\">Next</a>  <a href=\"newindex.php?building=$building_id&clusterid=$cluster_id&page=" . $total . "\">Last</a>  Current " . $page . 'Total' . $total;
+            echo "<input type=\"button\" value=\" add new node \" onclick=\"window.location.href='newaddnode.php?building=$building_id&clusterid=$cluster_id'\"> </td></tr>";
+        }
     }
     
     //展示cluster列表
@@ -300,7 +304,8 @@ else if(isset($_GET['building']))
             echo '<tr>';
             echo '<td>' . 'Device id' . '</td>';
             echo '<td>' . 'Device type' . '</td>';
-            echo '<td>' . 'location' . '</td>';
+            echo '<td>' . 'Status' . '</td>';
+            echo '<td>' . 'Location' . '</td>';
             echo '<td>' . 'Install time' . '</td>';
             echo '<td>' . 'update' . '</td>';
             echo '<td>' . 'delete' . '</td>';
@@ -316,6 +321,7 @@ else if(isset($_GET['building']))
                 echo '<tr>';
                 echo "<td><a href=\"newindex.php?building=$building_id&clusterid=$cluster_id\">" . $cluster_id . '</td>';
                 echo '<td>FCluster</td>';
+                echo '<td>' . $floor['status'] . '</td>';
                 echo '<td>' . $floor['location'] . '</td>';
                 echo '<td>' . $floor['time'] . '</td>';
                 
@@ -323,8 +329,17 @@ else if(isset($_GET['building']))
                 echo "<td><a href=\"delete.php?building=$building_id&clusterid=$cluster_id\">delete</a></td>";
                 echo '</tr>';
             }
-            echo "<tr><td colspan=\"6\"><a href=\"newindex.php?building=$building_id&page=1\">Main</a>  <a href=\"newindex.php?building=$building_id&page=" . ($page - 1) . "\">Previous</a>   <a href=\"newindex.php?building=$building_id&page=" . ($page + 1) . "\">Next</a>  <a href=\"newindex.php?building=$building_id&page=" . $total . "\">Last</a>  Current " . $page . 'Total' . $total;
-            echo "<input type=\"button\" value=\" add new floor cluster\" onclick=\"window.location.href='newadd.php?building=$building_id'\"> </td></tr>";
+         
+         echo "<tr><td colspan=\"7\"> 
+                                    <div align=\"right\" ><a href=\"newindex.php?building=$building_id&page=1\">Main
+                                    </a>  <a href=\"newindex.php?building=$building_id&page=" . ($page - 1) . "\">Previous
+                                    </a>   <a href=\"newindex.php?building=$building_id&page=" . ($page + 1) . "\">Next
+                                    </a>  <a href=\"newindex.php?building=$building_id&page=" . $total . "\">Last
+                                    </a>  Current " . $page . 'Total' . $total."
+                                    </div>
+                                    <div align=\"center\"><input type=\"button\" value=\" add new floor cluster\" 
+                                           onclick=\"window.location.href='newadd.php?building=$building_id'\">
+                                    </div></td></tr>";
             
         }
 

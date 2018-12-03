@@ -55,9 +55,20 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <li>
-            <a class="active" href="newindex.php?building=1">
+          
+                    <?php 
+          
+          include 'config.php';
+          
+          $building = $_GET['building'];
+          
+            echo "<a class=\"active\" href=\"newindex.php?building=$building\">"
+          
+          ?>
+            
+            
               <i class="fa fa-th"></i>
-              <span>Sensors </span>
+              <span>Infrastructure </span>
               </a>
           </li>
         </ul>
@@ -75,9 +86,7 @@
         
         
                 <?php 
-include 'config.php';
 
-$building = $_GET['building'];
 $count_sql = "select * from building where building_id = $building";
 $result = mysqli_query($conn, $count_sql);
 $row = mysqli_fetch_assoc($result);
@@ -108,6 +117,14 @@ echo $row['building_name'] ;
                       <input class="form-control " id="" type="" name="location" required />
                     </div>
                   </div>
+                  
+                   <div class="form-group ">
+                    <label for="cemail" class="control-label col-lg-2">Cluster status </label>
+                    <div class="col-lg-10">
+                      <input class="form-control " id="" type="" name="status" required />
+                    </div>
+                  </div>
+                  
 <!--                   <div class="form-group "> -->
 <!--                     <label for="curl" class="control-label col-lg-2">URL </label> -->
 <!--                     <div class="col-lg-10"> -->
@@ -138,16 +155,17 @@ echo $row['building_name'] ;
                   </div>
                   
       <?php             
-    if(isset($_POST["location"]) && isset($_POST["id"]))
+    if(isset($_POST["location"]) && isset($_POST["id"]) && isset($_POST["status"]))
     {
         $id=$_POST["id"];
         $location=$_POST["location"];
+        $status=$_POST["status"];
         
         $sql = "INSERT INTO building_floor (building_id, floor_cluster_id) VALUES ($building, $id)";
         
         if (mysqli_query($conn, $sql)) {
 
-            $sql = "INSERT INTO floor (floor_cluster_id, location) VALUES ($id, '$location')";
+            $sql = "INSERT INTO floor (floor_cluster_id, location, status) VALUES ($id, '$location', '$status')";
             
             if (mysqli_query($conn, $sql)) {
                
