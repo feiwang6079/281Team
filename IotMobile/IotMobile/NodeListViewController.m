@@ -12,6 +12,7 @@
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
 #import "SensorListViewController.h"
+#import "url.h"
 
 @interface NodeListViewController ()
 
@@ -30,14 +31,14 @@
     self.navigationItem.title = @"Room Node List";
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=nodelist";
+
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.floorId, @"floor", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    [manager GET:requestUrl parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:NODE_URL parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
         if([responseObject isKindOfClass:[NSArray class]])
         {
             self.buildingArray = (NSArray *)responseObject;

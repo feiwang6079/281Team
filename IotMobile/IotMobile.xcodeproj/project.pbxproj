@@ -96,6 +96,7 @@
 		E9B9F4E721B6690E004313FF /* SensorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensorCell.h; sourceTree = "<group>"; };
 		E9B9F4E821B6690E004313FF /* SensorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SensorCell.m; sourceTree = "<group>"; };
 		E9B9F4E921B6690E004313FF /* SensorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorCell.xib; sourceTree = "<group>"; };
+		E9B9F4EC21B66E4F004313FF /* url.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = url.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +161,7 @@
 				E9B9F4E721B6690E004313FF /* SensorCell.h */,
 				E9B9F4E821B6690E004313FF /* SensorCell.m */,
 				E9B9F4E921B6690E004313FF /* SensorCell.xib */,
+				E9B9F4EC21B66E4F004313FF /* url.h */,
 			);
 			path = IotMobile;
 			sourceTree = "<group>";

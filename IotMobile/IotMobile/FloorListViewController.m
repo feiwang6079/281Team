@@ -12,6 +12,7 @@
 #import "BuildingCell.h"
 #import "FloorCell.h"
 #import "NodeListViewController.h"
+#import "url.h"
 
 @interface FloorListViewController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -31,14 +32,14 @@
     self.navigationItem.title = @"Floor Cluster List";
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=floorlist";
+
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.buildingId, @"building", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    [manager GET:requestUrl parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:FLOOR_URL parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
         if([responseObject isKindOfClass:[NSArray class]])
         {
             self.buildingArray = (NSArray *)responseObject;

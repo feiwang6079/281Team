@@ -11,6 +11,7 @@
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
 #import "SensorCell.h"
+#import "url.h"
 
 @interface SensorListViewController ()
 
@@ -29,14 +30,13 @@
     self.navigationItem.title = @"Sensor List";
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=sensorlist";
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.nodeId, @"node", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    [manager GET:requestUrl parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:SENSOR_URL parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
         if([responseObject isKindOfClass:[NSArray class]])
         {
             self.buildingArray = (NSArray *)responseObject;

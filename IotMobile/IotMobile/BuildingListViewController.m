@@ -11,6 +11,7 @@
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
 #import "FloorListViewController.h"
+#import "url.h"
 
 @interface BuildingListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -35,14 +36,14 @@
     self.navigationController.navigationBar.hidden = YES;
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=buildinglist";
+
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"building", nil];
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    [manager GET:requestUrl parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:BUILDING_URL parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
         if([responseObject isKindOfClass:[NSArray class]])
         {
             self.buildingArray = (NSArray *)responseObject;

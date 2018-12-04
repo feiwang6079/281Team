@@ -10,6 +10,7 @@
 #import "AFNetworking/AFNetworking.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingListViewController.h"
+#import "url.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -44,7 +45,7 @@
         [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
         
         NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.userTextField.text, @"user", self.passwordTextField.text, @"password", nil];
-        [manager GET:@"http://localhost/New_281_Team/API/RestController.php?view=login" parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
+        [manager GET:LOGIN_URL parameters:dic success:^(NSURLSessionTask *task, id responseObject) {
             NSDictionary *dic = (NSDictionary *)responseObject;
             if([dic objectForKey:@"error"] != nil)
             {
