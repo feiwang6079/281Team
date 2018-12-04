@@ -81,5 +81,21 @@ Class Login {
         }
         return $array;
     }
+    
+    public function getSensor($node){
+        include 'newconfig.php';
+        
+        $sql = "select sensor_id from node_sensor where node_id = $node order by sensor_id desc";
+        $result = mysqli_query($conn, $sql);
+        $array = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+            $sensor_id = $row['sensor_id'];
+            $nodeSql = "select * from sensor where sensor_id = $sensor_id";
+            $resultSql = mysqli_query($conn, $nodeSql);
+            $room = mysqli_fetch_assoc($resultSql);
+            $array[] = $room;
+        }
+        return $array;
+    }
 }
 ?>

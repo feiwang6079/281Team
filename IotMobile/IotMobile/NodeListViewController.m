@@ -11,6 +11,7 @@
 #import "AFNetworking/AFNetworking.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
+#import "SensorListViewController.h"
 
 @interface NodeListViewController ()
 
@@ -62,7 +63,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    FloorCell *cell = [tableView dequeueReusableCellWithIdentifier:@"floor"];
+    FloorCell *cell = [tableView dequeueReusableCellWithIdentifier:@"node"];
     if(cell == nil)
     {
         cell = [[[NSBundle mainBundle] loadNibNamed:@"FloorCell" owner:self options:nil] firstObject];
@@ -79,7 +80,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    SensorListViewController *flvc = [[SensorListViewController alloc] init];
+    NSDictionary *dic = [self.buildingArray objectAtIndex:indexPath.row];
+    flvc.nodeId = [dic objectForKey:@"node_id"];
+    [self.navigationController pushViewController:flvc animated:YES];
 }
 
 @end

@@ -1,43 +1,37 @@
 //
-//  BuildingListViewController.m
+//  SensorListViewController.m
 //  IotMobile
 //
 //  Created by fei wang on 2018/12/3.
 //  Copyright © 2018 fei wang. All rights reserved.
 //
 
-#import "BuildingListViewController.h"
+#import "SensorListViewController.h"
 #import "AFNetworking/AFNetworking.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
-#import "FloorListViewController.h"
+#import "SensorCell.h"
 
-@interface BuildingListViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SensorListViewController ()
 
 @property(strong, nonatomic)NSArray *buildingArray;
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
-
 @end
 
-@implementation BuildingListViewController
-
--(void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.navigationBar.hidden = YES;
-
-}
+@implementation SensorListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.navigationController.navigationBar.hidden = YES;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = @"Sensor List";
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=buildinglist";
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"1", @"building", nil];
-
+    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=sensorlist";
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.nodeId, @"node", nil];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
     [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -55,6 +49,7 @@
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        [SVProgressHUD showErrorWithStatus:@"Get Data Failed"];
     }];
     
 }
@@ -67,36 +62,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BuildingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"building"];
+    SensorCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sensor"];
     if(cell == nil)
     {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"BuildingCell" owner:self options:nil] firstObject];
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"SensorCell" owner:self options:nil] firstObject];
     }
     
     NSDictionary *dic = [self.buildingArray objectAtIndex:indexPath.row];
-    cell.nameLabel.text = [dic objectForKey:@"building_name"];
-    cell.addressLabel.text = [dic objectForKey:@"building_address"];
+    cell.idLabel.text = [dic objectForKey:@"sensor_id"];
+    cell.typeLabel.text = [dic objectForKey:@"sensor_type"];
+    cell.statusLabel.text = [dic objectForKey:@"sensor_status"];
+    cell.timeLabel.text = [dic objectForKey:@"time"];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FloorListViewController *flvc = [[FloorListViewController alloc] init];
-    NSDictionary *dic = [self.buildingArray objectAtIndex:indexPath.row];
-    flvc.buildingId = [dic objectForKey:@"building_id"];
-    [self.navigationController pushViewController:flvc animated:YES];
-}
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

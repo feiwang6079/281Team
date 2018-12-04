@@ -79,6 +79,24 @@ class SiteRestHandler extends SimpleRest {
         $response = $this->encodeJson($nodes);
         echo $response;
     }
+    
+    function getSensor($node) {
+        $login = new Login();
+        $sensors = $login->getSensor($node);
+        
+        if(empty($sensors))
+        {
+            $statusCode = 404;
+            $nodes = array('error' => 'No sites found!');
+        }else
+        {
+            $statusCode = 200;
+        }
+        $requestContentType = $_SERVER['HTTP_ACCEPT'];
+        $this ->setHttpHeaders($requestContentType, $statusCode);
+        $response = $this->encodeJson($sensors);
+        echo $response;
+    }
         
     public function encodeJson($responseData) {
         $jsonResponse = json_encode($responseData);

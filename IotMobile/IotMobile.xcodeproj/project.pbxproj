@@ -34,6 +34,10 @@
 		E9B9F4D721B65870004313FF /* FloorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4D521B65870004313FF /* FloorCell.xib */; };
 		E9B9F4DB21B65C29004313FF /* NodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4D921B65C29004313FF /* NodeListViewController.m */; };
 		E9B9F4DC21B65C29004313FF /* NodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */; };
+		E9B9F4E521B668F2004313FF /* SensorListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4E321B668F2004313FF /* SensorListViewController.m */; };
+		E9B9F4E621B668F2004313FF /* SensorListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4E421B668F2004313FF /* SensorListViewController.xib */; };
+		E9B9F4EA21B6690E004313FF /* SensorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4E821B6690E004313FF /* SensorCell.m */; };
+		E9B9F4EB21B6690E004313FF /* SensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4E921B6690E004313FF /* SensorCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,12 @@
 		E9B9F4D821B65C29004313FF /* NodeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeListViewController.h; sourceTree = "<group>"; };
 		E9B9F4D921B65C29004313FF /* NodeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeListViewController.m; sourceTree = "<group>"; };
 		E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeListViewController.xib; sourceTree = "<group>"; };
+		E9B9F4E221B668F2004313FF /* SensorListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensorListViewController.h; sourceTree = "<group>"; };
+		E9B9F4E321B668F2004313FF /* SensorListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SensorListViewController.m; sourceTree = "<group>"; };
+		E9B9F4E421B668F2004313FF /* SensorListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorListViewController.xib; sourceTree = "<group>"; };
+		E9B9F4E721B6690E004313FF /* SensorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensorCell.h; sourceTree = "<group>"; };
+		E9B9F4E821B6690E004313FF /* SensorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SensorCell.m; sourceTree = "<group>"; };
+		E9B9F4E921B6690E004313FF /* SensorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +154,12 @@
 				E9B9F4D821B65C29004313FF /* NodeListViewController.h */,
 				E9B9F4D921B65C29004313FF /* NodeListViewController.m */,
 				E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */,
+				E9B9F4E221B668F2004313FF /* SensorListViewController.h */,
+				E9B9F4E321B668F2004313FF /* SensorListViewController.m */,
+				E9B9F4E421B668F2004313FF /* SensorListViewController.xib */,
+				E9B9F4E721B6690E004313FF /* SensorCell.h */,
+				E9B9F4E821B6690E004313FF /* SensorCell.m */,
+				E9B9F4E921B6690E004313FF /* SensorCell.xib */,
 			);
 			path = IotMobile;
 			sourceTree = "<group>";
@@ -247,11 +263,13 @@
 			files = (
 				E9B9F4D721B65870004313FF /* FloorCell.xib in Resources */,
 				E9B9F47021B60A87004313FF /* LoginViewController.xib in Resources */,
+				E9B9F4E621B668F2004313FF /* SensorListViewController.xib in Resources */,
 				E9B9F45E21B60892004313FF /* LaunchScreen.storyboard in Resources */,
 				E9B9F4C321B62491004313FF /* BuildingListViewController.xib in Resources */,
 				E9B9F45B21B60892004313FF /* Assets.xcassets in Resources */,
 				E9B9F4B921B62196004313FF /* SVProgressHUD.bundle in Resources */,
 				E9B9F4C821B62AE7004313FF /* BuildingCell.xib in Resources */,
+				E9B9F4EB21B6690E004313FF /* SensorCell.xib in Resources */,
 				E9B9F4DC21B65C29004313FF /* NodeListViewController.xib in Resources */,
 				E9B9F4D221B65858004313FF /* FloorListViewController.xib in Resources */,
 			);
@@ -265,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9B9F4DB21B65C29004313FF /* NodeListViewController.m in Sources */,
+				E9B9F4EA21B6690E004313FF /* SensorCell.m in Sources */,
 				E9B9F46F21B60A87004313FF /* LoginViewController.m in Sources */,
 				E9B9F4D121B65858004313FF /* FloorListViewController.m in Sources */,
 				E9B9F4D621B65870004313FF /* FloorCell.m in Sources */,
@@ -272,6 +291,7 @@
 				E9B9F4A921B613A2004313FF /* AFSecurityPolicy.m in Sources */,
 				E9B9F4B621B62196004313FF /* SVProgressAnimatedView.m in Sources */,
 				E9B9F4C221B62491004313FF /* BuildingListViewController.m in Sources */,
+				E9B9F4E521B668F2004313FF /* SensorListViewController.m in Sources */,
 				E9B9F46121B60892004313FF /* main.m in Sources */,
 				E9B9F4A521B613A2004313FF /* AFHTTPSessionManager.m in Sources */,
 				E9B9F4B721B62196004313FF /* SVProgressHUD.m in Sources */,

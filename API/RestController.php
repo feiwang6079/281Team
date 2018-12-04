@@ -30,8 +30,14 @@ if(isset($_GET["view"]))
             $floor = $_GET["floor"];
             $siteRestHandler = new SiteRestHandler();
             $siteRestHandler->getNode($floor);
-                
             break;
+            
+        case "sensorlist":
+            $node = $_GET["node"];
+            $siteRestHandler = new SiteRestHandler();
+            $siteRestHandler->getSensor($node);
+            break;
+            
         case "" :
             //404 - not found;
             break;
