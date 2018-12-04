@@ -1,38 +1,36 @@
 //
-//  FloorListViewController.m
+//  NodeListViewController.m
 //  IotMobile
 //
 //  Created by fei wang on 2018/12/3.
 //  Copyright © 2018 fei wang. All rights reserved.
 //
 
-#import "FloorListViewController.h"
+#import "NodeListViewController.h"
+#import "FloorCell.h"
 #import "AFNetworking/AFNetworking.h"
 #import "SVProgressHUD/SVProgressHUD.h"
 #import "BuildingCell.h"
-#import "FloorCell.h"
-#import "NodeListViewController.h"
 
-@interface FloorListViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface NodeListViewController ()
 
 @property(strong, nonatomic)NSArray *buildingArray;
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
-
 @end
 
-@implementation FloorListViewController
+@implementation NodeListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.title = @"Floor Cluster List";
+    self.navigationItem.title = @"Room Node List";
     _buildingArray = [NSArray array];
     
-    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=floorlist";
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.buildingId, @"building", nil];
+    NSString *requestUrl = @"http://localhost/New_281_Team/API/RestController.php?view=nodelist";
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:self.floorId, @"floor", nil];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [[NSSet alloc] initWithObjects: @"application/json",nil];
@@ -51,6 +49,7 @@
         
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
+        [SVProgressHUD showErrorWithStatus:@"Get Data Failed"];
     }];
     
 }
@@ -70,7 +69,7 @@
     }
     
     NSDictionary *dic = [self.buildingArray objectAtIndex:indexPath.row];
-    cell.idLabel.text = [dic objectForKey:@"floor_cluster_id"];
+    cell.idLabel.text = [dic objectForKey:@"node_id"];
     cell.locationLabel.text = [dic objectForKey:@"location"];
     cell.statusLabel.text = [dic objectForKey:@"status"];
     cell.timeLabel.text = [dic objectForKey:@"time"];
@@ -80,9 +79,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NodeListViewController *flvc = [[NodeListViewController alloc] init];
-    NSDictionary *dic = [self.buildingArray objectAtIndex:indexPath.row];
-    flvc.floorId = [dic objectForKey:@"floor_cluster_id"];
-    [self.navigationController pushViewController:flvc animated:YES];
+    
 }
+
 @end

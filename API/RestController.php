@@ -24,7 +24,14 @@ if(isset($_GET["view"]))
                 $building = $_GET["building"];
                 $siteRestHandler = new SiteRestHandler();
                 $siteRestHandler->getFloor($building);
+                break;
                 
+        case "nodelist":
+            $floor = $_GET["floor"];
+            $siteRestHandler = new SiteRestHandler();
+            $siteRestHandler->getNode($floor);
+                
+            break;
         case "" :
             //404 - not found;
             break;

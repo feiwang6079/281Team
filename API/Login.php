@@ -63,5 +63,23 @@ Class Login {
          }
          return $array;
     }
+    
+    public function getNode($floor){
+        include 'newconfig.php';
+        
+        $sql = "select node_id from floor_node where floor_cluster_id = $floor order by node_id desc";
+        $result = mysqli_query($conn, $sql); 
+        $array = array();
+        while ($row = mysqli_fetch_assoc($result)) {
+        
+            $node_id = $row['node_id'];
+            $nodeSql = "select * from node where node_id = $node_id";
+            $resultSql = mysqli_query($conn, $nodeSql);
+            $room = mysqli_fetch_assoc($resultSql);
+            $array[] = $room;
+            
+        }
+        return $array;
+    }
 }
 ?>

@@ -32,6 +32,8 @@
 		E9B9F4D221B65858004313FF /* FloorListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4D021B65858004313FF /* FloorListViewController.xib */; };
 		E9B9F4D621B65870004313FF /* FloorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4D421B65870004313FF /* FloorCell.m */; };
 		E9B9F4D721B65870004313FF /* FloorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4D521B65870004313FF /* FloorCell.xib */; };
+		E9B9F4DB21B65C29004313FF /* NodeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4D921B65C29004313FF /* NodeListViewController.m */; };
+		E9B9F4DC21B65C29004313FF /* NodeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,9 @@
 		E9B9F4D321B65870004313FF /* FloorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloorCell.h; sourceTree = "<group>"; };
 		E9B9F4D421B65870004313FF /* FloorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloorCell.m; sourceTree = "<group>"; };
 		E9B9F4D521B65870004313FF /* FloorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FloorCell.xib; sourceTree = "<group>"; };
+		E9B9F4D821B65C29004313FF /* NodeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NodeListViewController.h; sourceTree = "<group>"; };
+		E9B9F4D921B65C29004313FF /* NodeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeListViewController.m; sourceTree = "<group>"; };
+		E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NodeListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +141,9 @@
 				E9B9F4D321B65870004313FF /* FloorCell.h */,
 				E9B9F4D421B65870004313FF /* FloorCell.m */,
 				E9B9F4D521B65870004313FF /* FloorCell.xib */,
+				E9B9F4D821B65C29004313FF /* NodeListViewController.h */,
+				E9B9F4D921B65C29004313FF /* NodeListViewController.m */,
+				E9B9F4DA21B65C29004313FF /* NodeListViewController.xib */,
 			);
 			path = IotMobile;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 				E9B9F45B21B60892004313FF /* Assets.xcassets in Resources */,
 				E9B9F4B921B62196004313FF /* SVProgressHUD.bundle in Resources */,
 				E9B9F4C821B62AE7004313FF /* BuildingCell.xib in Resources */,
+				E9B9F4DC21B65C29004313FF /* NodeListViewController.xib in Resources */,
 				E9B9F4D221B65858004313FF /* FloorListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9B9F4DB21B65C29004313FF /* NodeListViewController.m in Sources */,
 				E9B9F46F21B60A87004313FF /* LoginViewController.m in Sources */,
 				E9B9F4D121B65858004313FF /* FloorListViewController.m in Sources */,
 				E9B9F4D621B65870004313FF /* FloorCell.m in Sources */,

@@ -82,7 +82,7 @@
                 <outlet property="statusLabel" destination="I61-Tb-BPf" id="Cep-ke-cRt"/>
                 <outlet property="timeLabel" destination="5Ci-zq-1GD" id="RxG-9M-O5e"/>
             </connections>
-            <point key="canvasLocation" x="-738" y="-144"/>
+            <point key="canvasLocation" x="-1015" y="-144"/>
         </tableViewCell>
     </objects>
 </document>
