@@ -28,6 +28,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.backgroundColor = navigationBarColor;
+
     self.navigationItem.title = @"Room Node List";
     _buildingArray = [NSArray array];
     
@@ -75,6 +77,7 @@
     cell.locationLabel.text = [dic objectForKey:@"location"];
     cell.statusLabel.text = [dic objectForKey:@"status"];
     cell.timeLabel.text = [dic objectForKey:@"time"];
+    cell.bImageView.image = [UIImage imageNamed:@"4.png"];
     
     return cell;
 }

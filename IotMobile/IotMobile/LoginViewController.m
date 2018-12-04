@@ -18,6 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+
+
 @end
 
 @implementation LoginViewController
@@ -25,6 +28,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.navigationController.navigationBar.hidden = YES;
+    self.navView.backgroundColor = navigationBarColor;
 }
 
 

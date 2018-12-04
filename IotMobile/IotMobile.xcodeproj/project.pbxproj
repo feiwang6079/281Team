@@ -38,6 +38,11 @@
 		E9B9F4E621B668F2004313FF /* SensorListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4E421B668F2004313FF /* SensorListViewController.xib */; };
 		E9B9F4EA21B6690E004313FF /* SensorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B9F4E821B6690E004313FF /* SensorCell.m */; };
 		E9B9F4EB21B6690E004313FF /* SensorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9B9F4E921B6690E004313FF /* SensorCell.xib */; };
+		E9E9FE0621B7068A00ADAAED /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E9FE0521B7068A00ADAAED /* 1.png */; };
+		E9E9FE0821B70D2A00ADAAED /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E9FE0721B70D2A00ADAAED /* 2.png */; };
+		E9E9FE0A21B70ED500ADAAED /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E9FE0921B70ED500ADAAED /* 3.png */; };
+		E9E9FE0C21B7102300ADAAED /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E9FE0B21B7102300ADAAED /* 4.png */; };
+		E9E9FE0E21B7119600ADAAED /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = E9E9FE0D21B7119600ADAAED /* 5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +102,11 @@
 		E9B9F4E821B6690E004313FF /* SensorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SensorCell.m; sourceTree = "<group>"; };
 		E9B9F4E921B6690E004313FF /* SensorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SensorCell.xib; sourceTree = "<group>"; };
 		E9B9F4EC21B66E4F004313FF /* url.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = url.h; sourceTree = "<group>"; };
+		E9E9FE0521B7068A00ADAAED /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		E9E9FE0721B70D2A00ADAAED /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		E9E9FE0921B70ED500ADAAED /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		E9E9FE0B21B7102300ADAAED /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		E9E9FE0D21B7119600ADAAED /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +123,7 @@
 		E9B9F44521B60890004313FF = {
 			isa = PBXGroup;
 			children = (
+				E9E9FDFE21B7053D00ADAAED /* Image */,
 				E9B9F4AA21B62196004313FF /* SVProgressHUD */,
 				E9B9F49521B613A2004313FF /* AFNetworking */,
 				E9B9F45021B60890004313FF /* IotMobile */,
@@ -206,6 +217,18 @@
 			path = IotMobile/SVProgressHUD;
 			sourceTree = "<group>";
 		};
+		E9E9FDFE21B7053D00ADAAED /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				E9E9FE0521B7068A00ADAAED /* 1.png */,
+				E9E9FE0721B70D2A00ADAAED /* 2.png */,
+				E9E9FE0921B70ED500ADAAED /* 3.png */,
+				E9E9FE0B21B7102300ADAAED /* 4.png */,
+				E9E9FE0D21B7119600ADAAED /* 5.png */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -263,15 +286,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E9FE0821B70D2A00ADAAED /* 2.png in Resources */,
 				E9B9F4D721B65870004313FF /* FloorCell.xib in Resources */,
 				E9B9F47021B60A87004313FF /* LoginViewController.xib in Resources */,
+				E9E9FE0C21B7102300ADAAED /* 4.png in Resources */,
 				E9B9F4E621B668F2004313FF /* SensorListViewController.xib in Resources */,
 				E9B9F45E21B60892004313FF /* LaunchScreen.storyboard in Resources */,
+				E9E9FE0A21B70ED500ADAAED /* 3.png in Resources */,
 				E9B9F4C321B62491004313FF /* BuildingListViewController.xib in Resources */,
+				E9E9FE0621B7068A00ADAAED /* 1.png in Resources */,
 				E9B9F45B21B60892004313FF /* Assets.xcassets in Resources */,
 				E9B9F4B921B62196004313FF /* SVProgressHUD.bundle in Resources */,
 				E9B9F4C821B62AE7004313FF /* BuildingCell.xib in Resources */,
 				E9B9F4EB21B6690E004313FF /* SensorCell.xib in Resources */,
+				E9E9FE0E21B7119600ADAAED /* 5.png in Resources */,
 				E9B9F4DC21B65C29004313FF /* NodeListViewController.xib in Resources */,
 				E9B9F4D221B65858004313FF /* FloorListViewController.xib in Resources */,
 			);
@@ -372,7 +400,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +453,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -438,6 +466,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R7FV575S5B;
 				INFOPLIST_FILE = IotMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -454,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R7FV575S5B;
 				INFOPLIST_FILE = IotMobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

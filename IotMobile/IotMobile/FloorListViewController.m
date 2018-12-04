@@ -29,6 +29,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.backgroundColor = navigationBarColor;
+
     self.navigationItem.title = @"Floor Cluster List";
     _buildingArray = [NSArray array];
     

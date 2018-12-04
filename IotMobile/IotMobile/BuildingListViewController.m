@@ -17,6 +17,7 @@
 
 @property(strong, nonatomic)NSArray *buildingArray;
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIView *navView;
 
 
 @end
@@ -34,6 +35,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.hidden = YES;
+    self.navView.backgroundColor = navigationBarColor;
     _buildingArray = [NSArray array];
     
 
